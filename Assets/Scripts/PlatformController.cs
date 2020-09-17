@@ -25,7 +25,7 @@ public class PlatformController : MonoBehaviour
         if (transform.position.x <= -42)
         {
 
-            transform.position = new Vector3(42, transform.position.y, transform.position.z);
+            transform.position = new Vector3(42, Random.Range(0.0f, 1.0f), transform.position.z);
 
         }
 
