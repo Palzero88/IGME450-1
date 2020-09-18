@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,6 +46,13 @@ public class PlayerController : MonoBehaviour
         {
 
             hasHitZenith = true;
+
+        }
+        
+        if (transform.position.y <= -6.0f)
+        {
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         }
 
