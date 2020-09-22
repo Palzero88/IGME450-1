@@ -5,13 +5,15 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
 
+    public GameObject manager;
+    private GameManager managerScript;
     private Rigidbody2D rigidbody2d;
-    private float platformSpeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        manager = GameObject.Find("Manager");
+        managerScript = manager.GetComponent<GameManager>();
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
 
     }
@@ -20,16 +22,14 @@ public class PlatformController : MonoBehaviour
     void Update()
     {
 
-        transform.position = transform.position + new Vector3(-platformSpeed, 0.0f, 0.0f);
+        transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f);
 
-        if (transform.position.x <= -42)
+        if (transform.position.x <= -28.0f)
         {
-
-            transform.position = new Vector3(42, Random.Range(-4.748f, 1.0f), transform.position.z);
+            
+            Destroy(gameObject);
 
         }
-
-        platformSpeed += 0.01f * Time.deltaTime;
 
     }
 }
