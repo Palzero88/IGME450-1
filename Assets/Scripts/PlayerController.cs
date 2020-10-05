@@ -27,22 +27,67 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.W) && IsGrounded())
+        //regular jump
+        if (Input.GetKey(KeyCode.W))
         {
-
-            rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
-            hasHitZenith = false;
-
+            jumpSpeed = 10.0f;
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q))
+            {
+                //don't allow two jumps at once
+            }
+            else if (IsGrounded())
+            {
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                hasHitZenith = false;
+            }
+            else if (!IsGrounded() && !hasHitZenith)
+            {
+                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
+            }
         }
-        else if (Input.GetKey(KeyCode.W) && !hasHitZenith)
+
+        //propelled jump
+        if (Input.GetKey(KeyCode.Q))
         {
-
-            rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
-
+            jumpSpeed = 100.0f;
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.W))
+            {
+                //don't allow two jumps at once
+            }
+            else if (IsGrounded())
+            {
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                hasHitZenith = false;
+            }
+            else if (!IsGrounded() && !hasHitZenith)
+            {
+                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
+            }
         }
 
-        if (rigidbody2d.velocity.y >= 7.5f || Input.GetKeyUp(KeyCode.W))
+        //zoom jump (push forward)
+        if (Input.GetKey(KeyCode.E))
+        {
+            jumpSpeed = 20.0f;
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Q))
+            {
+                //don't allow two jumps at once
+            }
+            else if (IsGrounded())
+            {
+                rigidbody2d.velocity = Vector2.right * jumpSpeed * Time.deltaTime * 20;
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                hasHitZenith = false;
+            }
+            else if (!IsGrounded() && !hasHitZenith)
+            {
+                rigidbody2d.velocity += Vector2.right * jumpSpeed * Time.deltaTime * 2;
+                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
+            }
+        }
+
+
+        if (rigidbody2d.velocity.y >= 7.5f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E))
         {
 
             hasHitZenith = true;
