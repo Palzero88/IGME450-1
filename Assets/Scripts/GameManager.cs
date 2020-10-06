@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
+    public GameObject pickup;
     public GameObject platform;
     public float platformSpeed = 0.05f;
     private float counter = 2.0f;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
             //high platform spawns
             platform = Instantiate(platform, new Vector3(15.0f, 3.0f, 1.0f), Quaternion.identity);
             platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
+            Instantiate(pickup, new Vector3(15.0f, 4.0f, 1.0f), Quaternion.identity);
 
         }
         else if (platform.transform.position.x <= 0.0f)
@@ -46,6 +48,7 @@ public class GameManager : MonoBehaviour
             //regular platform spawns
             platform = Instantiate(platform, new Vector3(15.0f, Random.Range(platformMinRange, platformMaxRange), 1.0f), Quaternion.identity);
             platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
+            Instantiate(pickup, new Vector3(15.0f, platform.transform.position.y +1.0f, 1.0f), Quaternion.identity);
 
         }
 

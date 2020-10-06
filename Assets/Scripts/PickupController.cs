@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour
+public class PickupController : MonoBehaviour
 {
 
     public GameObject manager;
@@ -15,6 +15,7 @@ public class PlatformController : MonoBehaviour
 
         manager = GameObject.Find("Manager");
         managerScript = manager.GetComponent<GameManager>();
+        //rigidbody2d = transform.GetComponent<Rigidbody2D>();
 
     }
 
@@ -24,12 +25,20 @@ public class PlatformController : MonoBehaviour
 
         transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f);
 
-        if (transform.position.x <= -28.0f)
+        if (transform.position.x <= -11.0f)
         {
-            
+
             Destroy(gameObject);
 
         }
 
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        Destroy(gameObject);
+
+    }
+
 }
