@@ -5,6 +5,8 @@ using UnityEngine;
 public class PickupController : MonoBehaviour
 {
 
+    public int isActive;
+    public int pickupType;
     public GameObject manager;
     private GameManager managerScript;
     private Rigidbody2D rigidbody2d;
@@ -23,7 +25,7 @@ public class PickupController : MonoBehaviour
     void Update()
     {
 
-        transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f);
+        transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f) * isActive;
 
         if (transform.position.x <= -11.0f)
         {
@@ -36,6 +38,20 @@ public class PickupController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        if (pickupType == 1)
+        {
+
+            managerScript.score += 100;
+
+        }
+        else
+        {
+
+            managerScript.scoreMultiplier += 1;
+            managerScript.pickupTimer = 10.0f;
+
+        }
 
         Destroy(gameObject);
 
