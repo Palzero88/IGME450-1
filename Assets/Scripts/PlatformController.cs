@@ -26,9 +26,7 @@ public class PlatformController : MonoBehaviour
 
         if (transform.position.x <= -28.0f)
         {
-            
             Destroy(gameObject);
-
         }
 
     }
