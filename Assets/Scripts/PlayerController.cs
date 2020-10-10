@@ -49,19 +49,19 @@ public class PlayerController : MonoBehaviour
         //propelled jump
         if (Input.GetKey(KeyCode.Q))
         {
-            jumpSpeed = 100.0f;
+            //jumpSpeed = 100.0f;
             if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.W))
             {
                 //don't allow two jumps at once
             }
             else if (IsGrounded())
             {
-                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 80;
                 hasHitZenith = false;
             }
             else if (!IsGrounded() && !hasHitZenith)
             {
-                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
+                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 8;
             }
         }
 
