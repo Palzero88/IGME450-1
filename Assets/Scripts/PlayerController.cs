@@ -6,19 +6,20 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
+    public GameObject manager;
+    private GameManager managerScript;
     private BoxCollider2D playerBoxCollider;
-    //private GameObject player;
     private Rigidbody2D rigidbody2d;
     [SerializeField] private LayerMask platformsLayerMask;
     private float jumpSpeed = 10.0f;
-    private float movementSpeed = 5.0f;
     private bool hasHitZenith = false;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        //player = player.GetComponent<GameObject>();
+        manager = GameObject.Find("Manager");
+        managerScript = manager.GetComponent<GameManager>();
         playerBoxCollider = transform.GetComponent<BoxCollider2D>();
         rigidbody2d = transform.GetComponent<Rigidbody2D>();
 
@@ -27,67 +28,83 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (IsGrounded())
+        {
+
+            rigidbody2d.gravityScale = 4.0f;
+
+        }
+
         //regular jump
         if (Input.GetKey(KeyCode.W))
         {
             jumpSpeed = 10.0f;
-            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.Q))
+            rigidbody2d.gravityScale = 0.5f;
+            if (Input.GetKey(KeyCode.E))
             {
                 //don't allow two jumps at once
             }
             else if (IsGrounded())
             {
-                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 24;
                 hasHitZenith = false;
             }
             else if (!IsGrounded() && !hasHitZenith)
             {
-                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
+                //rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 1;
             }
         }
 
         //propelled jump
-        if (Input.GetKey(KeyCode.Q))
-        {
-            //jumpSpeed = 100.0f;
-            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.W))
-            {
-                //don't allow two jumps at once
-            }
-            else if (IsGrounded())
-            {
-                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 80;
-                hasHitZenith = false;
-            }
-            else if (!IsGrounded() && !hasHitZenith)
-            {
-                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 8;
-            }
-        }
-
-        //zoom jump (push forward)
         if (Input.GetKey(KeyCode.E))
         {
-            jumpSpeed = 20.0f;
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Q))
+
+            //jumpSpeed = 100.0f;
+            if (Input.GetKey(KeyCode.W))
             {
                 //don't allow two jumps at once
             }
             else if (IsGrounded())
             {
-                rigidbody2d.velocity = Vector2.right * jumpSpeed * Time.deltaTime * 20;
-                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 20;
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 160;
                 hasHitZenith = false;
-            }
-            else if (!IsGrounded() && !hasHitZenith)
-            {
-                rigidbody2d.velocity += Vector2.right * jumpSpeed * Time.deltaTime * 2;
-                rigidbody2d.velocity += Vector2.up * jumpSpeed * Time.deltaTime * 2;
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
 
-        if (rigidbody2d.velocity.y >= 7.5f || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.E))
+            managerScript.platformSpeed *= 0.5f;
+
+        }
+
+        //propelled jump
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+
+            managerScript.platformSpeed *= 2.0f;
+
+        }
+
+        //propelled jump
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+
+            managerScript.platformSpeed *= 2.0f;
+
+        }
+
+        //propelled jump
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+
+            managerScript.platformSpeed *= 0.5f;
+
+        }
+
+
+        if ( Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.E))
         {
 
             hasHitZenith = true;
