@@ -64,69 +64,71 @@ public class GameManager : MonoBehaviour
 
         }
 
-        platformSpeed += 0.001f * Time.deltaTime;
-
-        if (platform.transform.position.y <= -2.8f)
+        platformSpeed += 0.0015f * Time.deltaTime;
+        
+        
+        if (platform.transform.position.x <= 0.0f)
         {
-            //gameTimer = 0.0f;
 
+            int platformType = Random.Range(0, 2);
             pickupType = Random.Range(0, 3);
 
-            //high platform spawns
-            platform = Instantiate(platform, new Vector3(15.0f, 3.0f, 1.0f), Quaternion.identity);
-            platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
-
-            if (pickupType == 1)
+            if (platformType == 1)
             {
 
-                pickup = flatScorePickup;
+                //regular platform spawns
+                platform = Instantiate(platform, new Vector3(15.0f, Random.Range(platform.transform.position.y - 3, platform.transform.position.y + 6), 1.0f), Quaternion.identity);
+                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
 
-            }
-            else if (pickupType == 2)
-            {
+                if (pickupType == 1)
+                {
 
-                pickup = scoreMultiplierPickup;
+                    pickup = flatScorePickup;
+
+                }
+                else if (pickupType == 2)
+                {
+
+                    pickup = scoreMultiplierPickup;
+
+                }
+                else
+                {
+
+                    return;
+
+                }
 
             }
             else
             {
 
-                return;
+                //regular platform spawns
+                platform = Instantiate(platform, new Vector3(25, platform.transform.position.y, 1.0f), Quaternion.identity);
+                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
+
+                if (pickupType == 1)
+                {
+
+                    pickup = flatScorePickup;
+
+                }
+                else if (pickupType == 2)
+                {
+
+                    pickup = scoreMultiplierPickup;
+
+                }
+                else
+                {
+
+                    return;
+
+                }
 
             }
 
-            Instantiate(pickup, new Vector3(15.0f, 4.0f, 1.0f), Quaternion.identity);
-
-        }
-        else if (platform.transform.position.x <= 0.0f)
-        {
-
-            pickupType = Random.Range(0, 3);
-
-            //regular platform spawns
-            platform = Instantiate(platform, new Vector3(15.0f, Random.Range(platformMinRange, platformMaxRange), 1.0f), Quaternion.identity);
-            platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
-
-            if (pickupType == 1)
-            {
-
-                pickup = flatScorePickup;
-
-            }
-            else if (pickupType == 2)
-            {
-
-                pickup = scoreMultiplierPickup;
-
-            }
-            else
-            {
-
-                return;
-
-            }
-
-            pickup = Instantiate(pickup, new Vector3(15.0f, platform.transform.position.y +1.0f, 1.0f), Quaternion.identity);
+            pickup = Instantiate(pickup, new Vector3(platform.transform.position.x, platform.transform.position.y + 1.0f, 1.0f), Quaternion.identity);
             pickup.GetComponent<PickupController>().isActive = 1;
             pickup.GetComponent<PickupController>().pickupType = pickupType;
 

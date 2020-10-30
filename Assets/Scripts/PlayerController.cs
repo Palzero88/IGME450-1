@@ -39,15 +39,14 @@ public class PlayerController : MonoBehaviour
         //regular jump
         if (Input.GetKey(KeyCode.W))
         {
-            jumpSpeed = 10.0f;
-            rigidbody2d.gravityScale = 0.5f;
             if (Input.GetKey(KeyCode.E))
             {
                 //don't allow two jumps at once
             }
             else if (IsGrounded())
             {
-                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 24;
+                rigidbody2d.gravityScale = 0.5f;
+                rigidbody2d.velocity = Vector2.up * jumpSpeed * Time.deltaTime * 36;
                 hasHitZenith = false;
             }
             else if (!IsGrounded() && !hasHitZenith)
@@ -111,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
         }
         
-        if (transform.position.y <= -6.0f)
+        if (transform.position.y <= -60.0f)
         {
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
