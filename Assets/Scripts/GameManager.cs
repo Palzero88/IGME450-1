@@ -36,6 +36,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+        if (Input.GetKeyDown("space") && Time.timeScale == 1)
+        {
+
+            Time.timeScale = 0;
+            //platformSpeed = 0.0f;
+
+        }
+        else if (Input.GetKeyDown("space"))
+        {
+
+            Time.timeScale = 1;
+
+        }
+
         gameTimer += Time.deltaTime;
 
         if (gameTimer > 1.0f)

@@ -25,7 +25,7 @@ public class PickupController : MonoBehaviour
     void Update()
     {
 
-        transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f) * isActive;
+        transform.position = transform.position + new Vector3(-managerScript.platformSpeed * Time.timeScale, 0.0f, 0.0f) * isActive;
 
         if (transform.position.x <= -11.0f)
         {

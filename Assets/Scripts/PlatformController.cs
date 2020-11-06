@@ -22,7 +22,7 @@ public class PlatformController : MonoBehaviour
     void Update()
     {
 
-        transform.position = transform.position + new Vector3(-managerScript.platformSpeed, 0.0f, 0.0f);
+        transform.position = transform.position + new Vector3(-managerScript.platformSpeed * Time.timeScale, 0.0f, 0.0f);
 
         if (transform.position.x <= -28.0f)
         {
