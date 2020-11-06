@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y <= -60.0f)
         {
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(3);
 
         }
 
