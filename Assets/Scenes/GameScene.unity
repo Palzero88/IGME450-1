@@ -140,12 +140,12 @@ PrefabInstance:
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 36.03
+      value: -11.92
       objectReference: {fileID: 0}
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.46
+      value: 7.35
       objectReference: {fileID: 0}
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}
@@ -399,6 +399,7 @@ MonoBehaviour:
   platform: {fileID: 853338062}
   scoreText: {fileID: 1232933333}
   multiplierText: {fileID: 1517183682}
+  player: {fileID: 1732106026}
   platformMinRange: -3
   platformMaxRange: 3
   platformMinWidth: 50
@@ -1035,12 +1036,12 @@ PrefabInstance:
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.18
+      value: -11.909998
       objectReference: {fileID: 0}
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.399999
+      value: 5.680001
       objectReference: {fileID: 0}
     - target: {fileID: 1689284564312800137, guid: a38a90e10fb584c45b2b3f78c4e53518,
         type: 3}

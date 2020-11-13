@@ -27,7 +27,7 @@ public class PickupController : MonoBehaviour
 
         transform.position = transform.position + new Vector3(-managerScript.platformSpeed * Time.timeScale, 0.0f, 0.0f) * isActive;
 
-        if (transform.position.x <= -11.0f)
+        if (transform.position.x <= -20.0f)
         {
 
             Destroy(gameObject);

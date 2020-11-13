@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject platform;
     public Text scoreText;
     public Text multiplierText;
+    public GameObject player;
 
     private int pickupType;
     private float gameTimer = 0.0f;
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
         platformSpeed += 0.0015f * Time.deltaTime;
         
         
-        if (platform.transform.position.x <= 0.0f)
+        if (platform.transform.position.x <= player.transform.position.x + 9.0f)
         {
 
             int platformType = Random.Range(0, 2);
@@ -91,7 +92,7 @@ public class GameManager : MonoBehaviour
             {
 
                 //regular platform spawns
-                platform = Instantiate(platform, new Vector3(15.0f, Random.Range(platform.transform.position.y - 3, platform.transform.position.y + 6), 1.0f), Quaternion.identity);
+                platform = Instantiate(platform, new Vector3(player.transform.position.x + 24.0f, Random.Range(platform.transform.position.y - 3, platform.transform.position.y + 6), 1.0f), Quaternion.identity);
                 platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
 
                 if (pickupType == 1)
@@ -118,7 +119,7 @@ public class GameManager : MonoBehaviour
             {
 
                 //regular platform spawns
-                platform = Instantiate(platform, new Vector3(25, platform.transform.position.y, 1.0f), Quaternion.identity);
+                platform = Instantiate(platform, new Vector3(player.transform.position.x + 34, platform.transform.position.y, 1.0f), Quaternion.identity);
                 platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
 
                 if (pickupType == 1)

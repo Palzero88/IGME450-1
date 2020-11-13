@@ -36,10 +36,26 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        //propelled jump
+        if (Input.GetKey(KeyCode.Q))
+        {
+            //jumpSpeed = 100.0f;
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.E))
+            {
+                //don't allow two jumps at once
+            }
+            else if (IsGrounded())
+            {
+                rigidbody2d.gravityScale = 2.0f;
+                rigidbody2d.velocity = (Vector2.up + Vector2.right * 0.5f) * jumpSpeed * Time.deltaTime * 80;
+                hasHitZenith = false;
+            }
+        }
+
         //regular jump
         if (Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
             {
                 //don't allow two jumps at once
             }
@@ -55,12 +71,12 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //propelled jump
+        //high jump
         if (Input.GetKey(KeyCode.E))
         {
 
             //jumpSpeed = 100.0f;
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.W))
             {
                 //don't allow two jumps at once
             }
@@ -71,7 +87,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.F))
         {
 
             managerScript.platformSpeed *= 0.5f;
@@ -87,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //propelled jump
-        if (Input.GetKeyUp(KeyCode.Q))
+        if (Input.GetKeyUp(KeyCode.F))
         {
 
             managerScript.platformSpeed *= 2.0f;
@@ -103,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if ( Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.Q) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.E))
         {
 
             hasHitZenith = true;
