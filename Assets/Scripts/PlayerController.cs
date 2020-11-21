@@ -37,10 +37,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //propelled jump
-        if (Input.GetKey(KeyCode.Q))
+        if (Input.GetKey(KeyCode.E))
         {
             //jumpSpeed = 100.0f;
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Q))
             {
                 //don't allow two jumps at once
             }
@@ -72,11 +72,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //high jump
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.Q))
         {
 
             //jumpSpeed = 100.0f;
-            if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.W))
             {
                 //don't allow two jumps at once
             }

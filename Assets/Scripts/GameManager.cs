@@ -22,10 +22,10 @@ public class GameManager : MonoBehaviour
     private GameObject pickup;
 
     //regular platform var
-    public float platformMinRange = -3.0f;
-    public float platformMaxRange = 3.0f;
-    public float platformMinWidth = 50.0f;
-    public float platformMaxWidth = 100.0f;
+    private float platformMinRange = -3.0f;
+    private float platformMaxRange = 3.0f;
+    private float platformMinWidth = 0.25f;
+    private float platformMaxWidth = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
                 //regular platform spawns
                 platform = Instantiate(platform, new Vector3(player.transform.position.x + 24.0f, Random.Range(platform.transform.position.y - 3, platform.transform.position.y + 6), 1.0f), Quaternion.identity);
-                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
+                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 1.0f, 1.0f);
 
                 if (pickupType == 1)
                 {
@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
                 //regular platform spawns
                 platform = Instantiate(platform, new Vector3(player.transform.position.x + 34, platform.transform.position.y, 1.0f), Quaternion.identity);
-                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 3.5f, 1.0f);
+                platform.transform.localScale = new Vector3(Random.Range(platformMinWidth, platformMaxWidth), 1.0f, 1.0f);
 
                 if (pickupType == 1)
                 {
